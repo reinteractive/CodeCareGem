@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+
+require 'mail'
+require 'open3'
+require 'socket'
+
+# Mail delivery parameters are validated in a pretty simple way. These are not
+# manditory for all SMTP server and there are more options. If this is not what
+# you need, then change the code.
+
+to = ENV['CRON_MONITOR_EMAIL_TO']
+from = ENV['CRON_MONITOR_EMAIL_FROM']
+smtp_host = ENV['SMTP_HOST']
+smtp_port = ENV['SMTP_PORT']
+smtp_username = ENV['SMTP_USERNAME']
+smtp_password = ENV['SMTP_PASSWORD']
+
+if !from || !to || ! smtp_host || !smtp_port || !smtp_username || !smtp_password
+  puts 'cron_monitor: Env vars CRON_MONITOR_EMAIL_TO, CRON_MONITOR_EMAIL_FROM, SMTP_HOST, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD must be set.'
+  exit 1
+end
+
+begin
+  out, err, status = Open3.capture3(*ARGV)
+  exitstatus = status.exitstatus
+rescue StandardError => e
+  out = "Failed to exec command: #{e}"
+  err = ""
+  exitstatus = -1
+end
+
+if exitstatus != 0
+  hostname = Socket.gethostname
+  command = if ARGV.length == 1
+              ARGV[0]
+            else
+              (ARGV.map { |arg| arg.include?(' ') ? "'" + arg + "'" : arg  }).join(' ')
+            end
+
+  smtp_config = {
+    address: smtp_host,
+    port: smtp_port,
+    enable_starttls: true,
+    authentication: 'plain',
+    user_name: smtp_username,
+    password:smtp_password
+  }
+
+  Mail.deliver do
+    delivery_method :smtp, smtp_config
+    from from
+    to to
+    subject "Cron failed for #{ hostname }"
+    body <<-HEREDOC
+Host: #{ hostname }
+Command: #{ command }
+Exit status: #{ exitstatus }
+
+Stdout:
+
+#{ out }
+
+Stderr:
+
+#{ err }
+    HEREDOC
+  end
+end
+
+# exits successfully even when command fails
