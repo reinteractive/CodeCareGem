@@ -122,7 +122,6 @@ DEPENDENCIES
   bundler (~> 1.16)
   code_care!
   rake (~> 10.0)
-  rspec (~> 3.0)
 
 BUNDLED WITH
    1.16.5
