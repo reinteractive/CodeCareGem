@@ -1,3 +1,5 @@
+#!usr/bin/env ruby
+
 # Install needed dependencies
 system("gem install brakeman")
 system("gem install bundler-audit")
