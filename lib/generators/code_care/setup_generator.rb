@@ -38,6 +38,7 @@ job_type :bundled_rake_sentinel, "cd :path && bundle exec bin/cron_monitor rake 
         <<-'RUBY'
 require "simplecov"
 SimpleCov.start "rails"
+
           RUBY
       end
 
@@ -56,6 +57,19 @@ coverage
       return if File.exists?("Guardfile")
 
       copy_file("Guardfile", "Guardfile")
+    end
+
+    def setup_rubocop
+      FileUtils.touch(".rubocop.yml")
+
+      prepend_to_file(".rubocop.yml") do
+        <<-'YAML'
+inherit_gem:
+  reinteractive-style:
+    - default.yml
+
+        YAML
+      end
     end
   end
 end
