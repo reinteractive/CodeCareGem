@@ -71,5 +71,30 @@ inherit_gem:
         YAML
       end
     end
+
+    def setup_bullet
+      inject_into_file "config/environments/development.rb", after: "Rails.application.configure do\n" do <<-'RUBY'
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.alert = true
+  end
+        RUBY
+      end
+
+
+      inject_into_file "config/environments/test.rb", after: "Rails.application.configure do\n" do <<-'RUBY'
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.raise = true
+  end
+
+        RUBY
+      end
+    end
   end
 end

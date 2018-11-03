@@ -23,11 +23,14 @@ run `bundle exec rails g code_care:setup` at the root of the application
 
 Here is a list of gems that are included as dependencies. If they are already present in your Gemfile you can remove them when adding `code_care`.
 
+* [bullet](https://github.com/flyerhzm/bullet)
 * [guard-rspec](https://github.com/guard/guard-rspec)
 * [pry-rails](https://github.com/rweng/pry-rails)
 * [reinteractive-style](https://github.com/reinteractive/reinteractive-style)
 * [simplecov](https://github.com/colszowka/simplecov)
 * [spring-commands-rspec](https://github.com/jonleighton/spring-commands-rspec)
+
+*Note: Dependencies all have a `>= 0` version, if you need to specify a specific version you can do this in your app's `Gemfile`*
 
 ## Utilities/Automatic Setup
 
