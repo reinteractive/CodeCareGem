@@ -1,14 +1,6 @@
-#!usr/bin/env ruby
+#!/usr/bin/env ruby
 
-# Install needed dependencies
-system("gem install brakeman")
-system("gem install bundler-audit")
+bin_dir = File.expand_path(File.dirname(__FILE__))
+shell_script_path = File.join(bin_dir, "run_ci_checks.sh")
 
-# Run checks
-brakeman_res = system("brakeman -A")
-bundler_res = system("bundle audit check --update")
-
-# ignore warnings on PR/branch-triggered runs
-exit 0 if (ENV["TRAVIS_EVENT_TYPE"] != "cron")
-
-exit (brakeman_res || bundler_res)
+`#{shell_script_path}`
