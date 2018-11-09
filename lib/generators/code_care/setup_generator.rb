@@ -81,6 +81,7 @@ inherit_gem:
     Bullet.rails_logger = true
     Bullet.alert = true
   end
+
         RUBY
       end
 
