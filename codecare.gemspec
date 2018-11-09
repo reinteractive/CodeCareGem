@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["team@reinteractive.com"]
 
   spec.summary       = "Provides common setup used for CodeCare apps"
-  spec.homepage      = "https://github.com/reinteractive/CodeCare"
+  spec.homepage      = "https://github.com/reinteractive/CodeCareGem"
   spec.license       = "MIT"
 
   if spec.respond_to?(:metadata)
