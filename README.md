@@ -11,7 +11,9 @@ gem "code_care", git: "git@github.com:reinteractive/CodeCareGem.git", branch: "m
 
 And then execute:
 
-    $ bundle
+    $ bundle install
+    # If using vendored gems then also run:
+    $ bundle pack --all
 
 ## Usage
 
