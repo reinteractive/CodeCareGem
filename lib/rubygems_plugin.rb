@@ -5,6 +5,8 @@ def color(color)
 end
 
 Gem.pre_install do |installer|
+  next true unless installer.spec.name == "code_care"
+
   red = 31
   yellow = 33
 
