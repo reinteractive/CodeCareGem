@@ -44,6 +44,7 @@ SimpleCov.start "rails"
 
       append_to_file(".gitignore") do
         <<-'IGNORE'
+
 coverage
         IGNORE
       end
