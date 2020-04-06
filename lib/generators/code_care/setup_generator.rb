@@ -1,3 +1,4 @@
+require "annotate"
 require "rails/generators"
 require "yaml"
 require "fileutils"
@@ -97,6 +98,10 @@ inherit_gem:
 
         RUBY
       end
+    end
+
+    def setup_annotate
+      Annotate::Generators::InstallGenerator.new.copy_tasks
     end
   end
 end

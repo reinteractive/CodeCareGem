@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "guard-rspec", ">= 0"
   spec.add_dependency "pry-byebug", ">= 0"
   spec.add_dependency "pry-rails", ">= 0"
+  spec.add_dependency "annotate", ">= 0"
   # reinteractive-style includes rubocop dependency
   spec.add_dependency "reinteractive-style", "~> 0"
   spec.add_dependency "simplecov", ">= 0"
