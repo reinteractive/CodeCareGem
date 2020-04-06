@@ -39,6 +39,8 @@ job_type :bundled_rake_sentinel, "cd :path && bundle exec bin/cron_monitor rake 
         <<-'RUBY'
 require "simplecov"
 SimpleCov.start "rails"
+# Load everything again to prevent spring causing issues
+Rails.application.eager_load!
 
           RUBY
       end
