@@ -20,7 +20,7 @@ Gem.pre_install do |installer|
     color(red) { puts "When you upgrade to Ruby >= 2.3 you can remove it" }
     false
   else
-    skip_dependencies = %w(bundler rake)
+    skip_dependencies = %w(bundler rake pry-rails pry-byebug)
     installer.spec.dependencies.each do |dep|
       next if skip_dependencies.include?(dep.name)
 
