@@ -85,7 +85,7 @@ GEM
     reinteractive-style (0.2.8)
       rubocop (~> 0.57)
       rubocop-rspec (~> 1.24)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
